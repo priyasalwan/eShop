@@ -156,7 +156,8 @@ public class ConsentController : Controller
         }
         else
         {
-            _logger.LogError("No consent request matching request: {0}", returnUrl);
+            var sanitizedReturnUrl = returnUrl.Replace(Environment.NewLine, "").Replace("\n", "").Replace("\r", "");
+            _logger.LogError("No consent request matching request: {0}", sanitizedReturnUrl);
         }
 
         return null;
